@@ -31,7 +31,7 @@ void UpDownButton::DisableControls() {
 }
 
 void UpDownButton::OnButtonAPressed() {
-  if(upCallback != nullptr) {
+  if(downCallback != nullptr) {
     downCallback(this);
   }
 }
@@ -69,3 +69,23 @@ void UpDownButton::SetApplyCallback(std::function<bool (UpDownButton* widget)> c
 void UpDownButton::SetCancelCallback(std::function<bool (UpDownButton* widget)> callback) {
   cancelCallback = callback;
 }
+
+bool UpDownButton::ActOnTouched(uint16_t x, uint16_t y){
+Serial.print("UpDownBtn: handling touch");
+
+  if (x < size.width/2){
+    Serial.print("-");
+    if(downCallback != nullptr) {
+      downCallback(this);
+    }
+  }
+  else{
+    Serial.print("+");
+    if(upCallback != nullptr) {
+      upCallback(this);
+    }
+  }
+
+}
+
+

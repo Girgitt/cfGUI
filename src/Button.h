@@ -14,6 +14,8 @@ namespace Codingfield {
       void SetText(const std::string& t);
       void SetTitle(const std::string& t);
       void Draw() override;
+      bool ActOnTouched(uint16_t x, uint16_t y);
+      
     protected:
       Color backgroundColor = BLACK;
       bool backgroundColorUpdated = true;

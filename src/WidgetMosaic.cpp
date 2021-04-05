@@ -144,3 +144,38 @@ bool WidgetMosaic::IsZoomOnSelected() const {
 void WidgetMosaic::SetZoomOnSelectedCallback(std::function<void (Widget* widget, bool)>func) {
   zoomOnSelectedCallback = func;
 }
+
+bool WidgetMosaic::ActOnTouched(uint16_t x, uint16_t y){
+  Serial.println("touched x "+String(x)+"  y "+String(y));
+  if(IsZoomOnSelected() == false){
+    bool was_widget_touched = false;
+    for(int i = 0; i < children.size(); i++){
+      //children[i]->SetSelected(false);
+      Serial.println("checking widget");
+      Serial.println(" x: "+String(children[i]->GetPosition().x)+" x+wdth: "+String(children[i]->GetPosition().x + children[i]->GetSize().width));
+      Serial.println(" y: "+String(children[i]->GetPosition().y)+" y+hgth: "+String(children[i]->GetPosition().y + children[i]->GetSize().height));
+      if(children[i]->GetPosition().x < x)
+        if(x < children[i]->GetPosition().x + children[i]->GetSize().width)
+          if(children[i]->GetPosition().y < y)
+            if(y < children[i]->GetPosition().y + children[i]->GetSize().height){
+                Serial.println("INSIDE");
+                was_widget_touched = true;
+                indexSelected = i;
+                selectedWidget = children[indexSelected];
+                children[i]->SetSelected(true);
+                }
+    }
+    if(was_widget_touched)
+      for(int i = 0; i < children.size(); i++)
+        if(i != indexSelected)
+          children[i]->SetSelected(false);
+  return true;
+  }
+  else{
+    // screen was touched while the selected widget was zoomed
+    Serial.println("passing touch to the selected widget");
+    selectedWidget->ActOnTouched(x, y);
+
+  }
+  return false;
+}

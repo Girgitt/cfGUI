@@ -5,7 +5,9 @@
 #include "Point.h"
 #include "Size.h"
 
-#include <M5Stack.h>
+//#include <M5Stack.h>
+#include <M5Core2.h>
+
 
 namespace Codingfield {
   namespace UI {
@@ -71,6 +73,8 @@ namespace Codingfield {
       virtual void EnableControls() {}
       virtual void DisableControls() {}
       void Invalidate();
+
+      virtual bool ActOnTouched(uint16_t x, uint16_t y) {};
 
     protected:
       virtual void OnSizeUpdated() { }

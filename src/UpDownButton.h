@@ -22,6 +22,8 @@ namespace Codingfield {
       void SetApplyCallback(std::function<bool (UpDownButton* widget)> callback);
       void SetCancelCallback(std::function<bool (UpDownButton* widget)> callback);
 
+      bool ActOnTouched(uint16_t x, uint16_t y);
+      
     private:
       bool controlsEnabled = false;
       int32_t currentValue = 0;

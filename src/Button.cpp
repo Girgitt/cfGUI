@@ -113,3 +113,6 @@ void Codingfield::UI::Button::Draw() {
   }
   isInvalidated = false;
 }
+
+bool Codingfield::UI::Button::ActOnTouched(uint16_t x, uint16_t y){
+}

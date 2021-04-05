@@ -18,6 +18,7 @@ namespace Codingfield {
       const Widget* GetSelected() const;
       bool IsZoomOnSelected() const;
       void SetZoomOnSelectedCallback(std::function<void (Widget* widget, bool)> func);
+      bool ActOnTouched(uint16_t x, uint16_t y);
     private:
       int32_t indexSelected = 0;
       int32_t border = 5;
