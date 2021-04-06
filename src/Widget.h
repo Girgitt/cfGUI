@@ -7,6 +7,7 @@
 
 //#include <M5Stack.h>
 #include <M5Core2.h>
+//#include <ESP32-Chimera-Core.h>
 
 
 namespace Codingfield {
@@ -74,7 +75,7 @@ namespace Codingfield {
       virtual void DisableControls() {}
       void Invalidate();
 
-      virtual bool ActOnTouched(uint16_t x, uint16_t y) {};
+      virtual bool ActOnTouched(uint16_t x, uint16_t y) { return false; };
 
     protected:
       virtual void OnSizeUpdated() { }

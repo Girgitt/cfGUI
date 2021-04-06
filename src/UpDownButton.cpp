@@ -71,7 +71,7 @@ void UpDownButton::SetCancelCallback(std::function<bool (UpDownButton* widget)> 
 }
 
 bool UpDownButton::ActOnTouched(uint16_t x, uint16_t y){
-Serial.print("UpDownBtn: handling touch");
+  Serial.print("UpDownBtn: handling touch");
 
   if (x < size.width/2){
     Serial.print("-");
@@ -85,7 +85,5 @@ Serial.print("UpDownBtn: handling touch");
       upCallback(this);
     }
   }
-
+  return true;
 }
-
-

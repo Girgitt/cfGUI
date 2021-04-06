@@ -64,6 +64,7 @@ void Codingfield::UI::Button::Draw() {
     int yTitle;
     if(title.empty()) {
       yText = position.y + (size.height/2);
+      yTitle = 0;
     } else {
       yText = position.y + (size.height/3);
       yTitle = position.y + ((size.height/3)*2);
@@ -102,8 +103,8 @@ void Codingfield::UI::Button::Draw() {
     if(forceUpdate || (wasSelected != isSelected)) {
       if(isSelected) {
         M5.Lcd.drawRect(position.x, position.y, size.width, size.height, RED);
-        M5.Lcd.drawRect(position.x+1, position.y+1, size.width-2, size.height-2, RED);
-        M5.Lcd.drawRect(position.x+2, position.y+2, size.width-4, size.height-4, RED);
+        M5.Lcd.drawRect(position.x + 1, position.y + 1, size.width - 2, size.height - 2, RED);
+        M5.Lcd.drawRect(position.x + 2, position.y + 2, size.width - 4, size.height - 4, RED);
       } else {
         M5.Lcd.drawRect(position.x, position.y, size.width, size.height, backgroundColor);
         M5.Lcd.drawRect(position.x + 1, position.y + 1, size.width - 2, size.height - 2, backgroundColor);
@@ -115,4 +116,5 @@ void Codingfield::UI::Button::Draw() {
 }
 
 bool Codingfield::UI::Button::ActOnTouched(uint16_t x, uint16_t y){
+  return false;
 }
